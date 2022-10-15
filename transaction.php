@@ -24,10 +24,11 @@
         require('config/config.php');
         require('config/db.php');
 
-        $query = 'SELECT e.lastname, e.firstname, e.address, o.name as office_name FROM employee e, office o WHERE e.office_id = o.id';
+        $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, " " as remarks
+        FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id';
 
         $result = mysqli_query($conn, $query);
-        $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
     ?>
@@ -50,26 +51,30 @@
                         <div class="col-md-12">
                                 <div class="card strpied-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Employees</h4>
+                                        <h4 class="card-title">Transactions</h4>
                                         <p class="card-category">Here is a subtitle for this table</p>
                                     </div>
                                     <div class="card-body table-full-width table-responsive">
                                         <table class="table table-hover table-striped">
                                             <thead>
-                                                <th>Last Name</th>
-                                                <th>First Name</th>
-                                                <th>Address</th>
+                                                <th>Datelog</th>
+                                                <th>Document Code</th>
+                                                <th>Action</th>
                                                 <th>Office</th>
+                                                <th>Employee</th>
+                                                <th>Remarks</th>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    foreach($offices as $office) :                                            
+                                                    foreach($transactions as $transaction) :                                            
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $office['lastname']; ?></td>
-                                                    <td><?php echo $office['firstname']; ?></td>
-                                                    <td><?php echo $office['address']; ?></td>
-                                                    <td><?php echo $office['office_name']; ?></td>
+                                                    <td><?php echo $transaction['datelog']; ?></td>
+                                                    <td><?php echo $transaction['documentcode']; ?></td>
+                                                    <td><?php echo $transaction['action']; ?></td>
+                                                    <td><?php echo $transaction['office_name']; ?></td>
+                                                    <td><?php echo $transaction['employee_fullname']; ?></td>
+                                                    <td><?php echo $transaction['remarks']; ?></td>
                                                 </tr>
                                                 <?php endforeach ?>
                                             </tbody>
