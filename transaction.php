@@ -24,7 +24,10 @@
         require('config/config.php');
         require('config/db.php');
 
-        $search = $_GET['search'];
+        if(isset($_GET['search'])) {
+
+            $search = $_GET['search'];
+        }
         
         $results_per_page = 10;
 
@@ -42,7 +45,7 @@
 
         $page_first_result = ($page-1) * $results_per_page;
 
-        if (strlen($search) > 0) {
+        if (isset($search) and strlen($search) > 0) {
 
             $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
             FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id and t.documentcode ='. $search .'
