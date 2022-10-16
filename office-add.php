@@ -21,39 +21,9 @@
 <body>
     <div class="wrapper">
         <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
             <div class="sidebar-wrapper">
                 <?php include('includes/sidebar.php'); ?>
-                <!-- <div class="logo">
-                    <a href="javascript:;" class="simple-text">
-                      Your Logo
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">
-                            <i class="nc-icon nc-icon nc-paper-2"></i>
-                            <p>First example</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./user.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Second example</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="javascript:;">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade plan</p>
-                        </a>
-                    </li>
-                </ul> -->
+            
             </div>
         </div>
         <div class="main-panel">
@@ -67,7 +37,7 @@
                 $name = mysqli_real_escape_string($conn, $_POST['name']);
                 $contactnum = mysqli_real_escape_string($conn, $_POST['contactnum']);
                 $email = mysqli_real_escape_string($conn, $_POST['email']);
-                $address = mysqli_real_escape_string($conn, $_POST['name']);
+                $address = mysqli_real_escape_string($conn, $_POST['address']);
                 $city = mysqli_real_escape_string($conn, $_POST['city']);
                 $country = mysqli_real_escape_string($conn, $_POST['country']);
                 $postal = mysqli_real_escape_string($conn, $_POST['postal']);
@@ -91,7 +61,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Profile</h4>
+                                    <h4 class="card-title">Add Office</h4>
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
@@ -136,26 +106,12 @@
                                                     <input type="text" class="form-control" name="country">
                                                 </div>
                                             </div>
-                                        <!-- </div>
-                                        <div class="row"> -->
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label for="postal">Postal Code</label>
                                                     <input type="text" class="form-control" name="postal">
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Country</label>
-                                                    <input type="text" class="form-control" name="Country" value="Andrew">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label>Postal Code</label>
-                                                    <input type="number" class="form-control" name="ZIP Code">
-                                                </div>
-                                            </div> -->
                                         </div>
                                         <button type="submit" name="submit" value="submit" class="btn btn-info btn-fill pull-right">Save</button>
                                         <div class="clearfix"></div>
@@ -163,41 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <div class="card card-user">
-                                <div class="card-image">
-                                    <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="author">
-                                        <a href="#">
-                                            <img class="avatar border-gray" src="../assets/img/faces/face-3.jpg" alt="...">
-                                            <h5 class="title">Mike Andrew</h5>
-                                        </a>
-                                        <p class="description">
-                                            michael24
-                                        </p>
-                                    </div>
-                                    <p class="description text-center">
-                                        "Lamborghini Mercy
-                                        <br> Your chick she so thirsty
-                                        <br> I'm in that two seat Lambo"
-                                    </p>
-                                </div>
-                                <hr>
-                                <div class="button-container mr-auto ml-auto">
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-google-plus-square"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 </div>
             </div>

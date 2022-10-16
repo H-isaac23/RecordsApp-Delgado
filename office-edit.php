@@ -58,7 +58,7 @@
                 $name = mysqli_real_escape_string($conn, $_POST['name']);
                 $contactnum = mysqli_real_escape_string($conn, $_POST['contactnum']);
                 $email = mysqli_real_escape_string($conn, $_POST['email']);
-                $address = mysqli_real_escape_string($conn, $_POST['name']);
+                $address = mysqli_real_escape_string($conn, $_POST['address']);
                 $city = mysqli_real_escape_string($conn, $_POST['city']);
                 $country = mysqli_real_escape_string($conn, $_POST['country']);
                 $postal = mysqli_real_escape_string($conn, $_POST['postal']);
@@ -81,7 +81,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Profile</h4>
+                                    <h4 class="card-title">Edit Office</h4>
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
