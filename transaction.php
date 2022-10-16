@@ -24,8 +24,25 @@
         require('config/config.php');
         require('config/db.php');
 
+        $results_per_page = 10;
+
+        $query = "SELECT * FROM transaction";
+        $result = mysqli_query($conn, $query);
+        $number_of_result = mysqli_num_rows($result);
+
+        $number_of_page = ceil($number_of_result/$results_per_page);
+
+        if(!isset($_GET['page'])) {
+            $page = 1;
+        } else {
+            $page = $_GET['page'];
+        }
+
+        $page_first_result = ($page-1) * $results_per_page;
+
+
         $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
-        FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id';
+        FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id LIMIT '. $page_first_result . ', '. $results_per_page ;
 
         $result = mysqli_query($conn, $query);
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -89,6 +106,11 @@
                                 </div>
                             </div>
                     </div>
+                    <?php
+                        for($page=1; $page <= $number_of_page; $page++) {
+                            echo '<a href = "transaction.php?page='. $page . '">' . $page . '</a>';
+                        }
+                    ?>
                 </div>
             </div>
             <footer class="footer">
