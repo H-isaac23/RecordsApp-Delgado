@@ -24,7 +24,7 @@
         require('config/config.php');
         require('config/db.php');
 
-        $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, "" as remarks
+        $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
         FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id';
 
         $result = mysqli_query($conn, $query);
@@ -50,6 +50,12 @@
                     <div class="row">
                         <div class="col-md-12">
                                 <div class="card strpied-tabled-with-hover">
+                                    <br>
+                                    <div class="col-md-12">
+                                        <a href="/transaction-add.php">
+                                            <button type="submit" class="btn btn-info btn-fill pull-right">Add New Transaction</button>
+                                        </a>
+                                    </div>
                                     <div class="card-header ">
                                         <h4 class="card-title">Transactions</h4>
                                         <p class="card-category">Here is a subtitle for this table</p>

@@ -56,7 +56,7 @@
                                         </a>
                                     </div>
                                     <div class="card-header ">
-                                        <h4 class="card-title">Striped Table with Hover</h4>
+                                        <h4 class="card-title">Offices</h4>
                                         <p class="card-category">Here is a subtitle for this table</p>
                                     </div>
                                     <div class="card-body table-full-width table-responsive">
