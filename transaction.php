@@ -24,6 +24,8 @@
         require('config/config.php');
         require('config/db.php');
 
+        $search = $_GET['search'];
+        
         $results_per_page = 10;
 
         $query = "SELECT * FROM transaction";
@@ -40,9 +42,15 @@
 
         $page_first_result = ($page-1) * $results_per_page;
 
+        if (strlen($search) > 0) {
 
-        $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
-        FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id LIMIT '. $page_first_result . ', '. $results_per_page ;
+            $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
+            FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id and t.documentcode ='. $search .'
+            ORDER BY t.documentcode, t.datelog LIMIT '. $page_first_result . ', '. $results_per_page ;
+        } else {
+            $query = 'SELECT t.datelog, t.documentcode, t.action, o.name as office_name, CONCAT(e.lastname, ",", e.firstname) as employee_fullname, t.remarks
+            FROM employee e, office o, transaction t WHERE t.employee_id = e.id and e.office_id = o.id LIMIT '. $page_first_result . ', '. $results_per_page ;
+        }
 
         $result = mysqli_query($conn, $query);
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -68,6 +76,13 @@
                         <div class="col-md-12">
                                 <div class="card strpied-tabled-with-hover">
                                     <br>
+                                    <div class="col-md-12">
+                                        <form action="transaction.php" method="GET">
+                                            <input type="text" name="search">
+                                            <input type="submit" value="Search" class="btn btn-info btn-fill">
+                                        </form>
+                                    </div>
+                                    <!--  -->
                                     <div class="col-md-12">
                                         <a href="/transaction-add.php">
                                             <button type="submit" class="btn btn-info btn-fill pull-right">Add New Transaction</button>
